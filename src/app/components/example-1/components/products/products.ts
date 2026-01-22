@@ -10,7 +10,16 @@ import { ProductsCount } from '../products-count/products-count';
   styleUrl: './products.css',
 })
 export class Products {
+  productsList: any[] = []
   readonly _productsService = inject(ProductsService);
+
+  ngOnInit() {
+    this._productsService.products$.subscribe((productsList) => {
+      console.log('ProductsComponent productsList', productsList);
+
+      this.productsList = productsList
+    })
+  }
 
   addProduct() {
     this._productsService.addProduct(3, 'Microphone', 300)
@@ -21,6 +30,6 @@ export class Products {
   }
 
   resetProducts() {
-    this._productsService.products = []
+    this.productsList = []
   }
 }

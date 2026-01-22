@@ -1,1 +1,3 @@
-<p>products-count works!</p>
+<div>
+  <p>Product Qty: {{ (_productsService.products$ | async)?.length }}</p>
+</div>
